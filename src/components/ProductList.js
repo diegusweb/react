@@ -11,13 +11,13 @@ const ProductList = ({ item, onDetailProduct }) => {
         </Link>
         <div class="card-body">
           <h4 class="card-title">{item.product}</h4>
-          <p class="card-text">{item.name} </p>
+
           <hr />
           <span class="badge badge-danger badge-cat">Price {item.price}</span>
 
-          <a href="#" class="btn btn-success btn-block">
-            buy
-          </a>
+          <Link to={`/catalog/${item.id}`} class="btn btn-info btn-block">         
+            more informtion
+          </Link>
         </div>
       </div>
     </div>

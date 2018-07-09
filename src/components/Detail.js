@@ -29,7 +29,7 @@ class Detail extends Component {
     const newItemCart = {
       product: productDetail.product,
       name: productDetail.name,
-      cantidad: 2,
+      cantidad: 1,
       price: parseInt(productDetail.price),
       total: (parseInt(productDetail.price) * 2)
     };
