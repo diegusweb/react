@@ -4,7 +4,13 @@ import Product from './components/Product';
 import Detail from './components/Detail';
 import Cart from './components/Cart';
 import NavBar from './components/NavBar';
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  browserHistory
+} from 'react-router-dom';
 
 import './styles.css';
 
