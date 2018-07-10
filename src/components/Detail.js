@@ -9,7 +9,7 @@ class Detail extends Component {
     super(props);
 
     this.state = {
-      productDetail: []
+      productDetail: [],
     };
   }
 
@@ -23,10 +23,11 @@ class Detail extends Component {
       })
       .catch(err => console.log(err));
   }
-  
+
 
   onAddlProductToCart = productDetail => event => {
     const newItemCart = {
+      id: productDetail.id,
       product: productDetail.product,
       name: productDetail.name,
       cantidad: 1,
@@ -38,7 +39,7 @@ class Detail extends Component {
 
     addItemCart(newItemCart)
       .then(res => {
-        console.log("add success");        
+        console.log("add success");
       })
       .catch(err => console.log(err));
   };
@@ -58,6 +59,7 @@ class Detail extends Component {
                 class="card-img-top"
                 alt={productDetail.product}
               />
+              <hr />
               <p>{productDetail.description}</p>
               <hr />
               <span class="badge badge-danger badge-cat">
