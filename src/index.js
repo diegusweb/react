@@ -15,25 +15,33 @@ import {
 import './styles.css';
 
 
-function NotFound() {
-  return (
-    <div>
-      <h2>Page not found :(</h2>
-    </div>
-  );
-}
+const NotFound = () => (
+  <div>
+    <h2>Page not found :(</h2>
+  </div>
+);
+
+const About = () => (
+  <div>
+    <h1>React Training</h1>
+    <h2>Developer: Diego Rueda</h2>
+    <p>Project: Shooping Cart</p>
+  </div>
+);
 
 function App() {
   return (
     <Router history={browserHistory}>
-      <div class="col-md-12">
+      <div className="col-md-12">
         <NavBar />
         <hr />
         <Switch>        
           <Route path="/listcatalog" component={Product} />
           <Route path="/catalog/:id" component={Detail} />
           <Route path="/cart/" component={Cart} />
-          <Route path="*" component={NotFound} />
+          <Route path="/about" component={About} />
+          <Route path="*" component={Product} />
+         
         </Switch>
       </div>
     </Router>

@@ -3,13 +3,15 @@ import { getProduct } from "../utils/api";
 import { addItemCart } from "../utils/api";
 import { Link } from "react-router-dom";
 import { refcar } from "./config/constants";
+import ShowResult from "../components/ShowResult";
 
 class Detail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      productDetail: []
+      productDetail: [],
+      showResults: false
     };
   }
 
@@ -25,50 +27,79 @@ class Detail extends Component {
   }
 
   onAddlProductToCart = productDetail => event => {
+    let verifyItem = false;
     const newItemCart = {
       id: productDetail.id,
       product: productDetail.product,
       name: productDetail.name,
       cantidad: 1,
+      stoke: productDetail.stock,
       price: parseInt(productDetail.price),
       total: parseInt(productDetail.price) * 2
     };
 
-    refcar.push(newItemCart);
+    console.log(refcar.length);
 
-    addItemCart(newItemCart)
-      .then(res => {
-        console.log("add success");
-      })
-      .catch(err => console.log(err));
+    if (refcar.length === 0) {
+      refcar.push(newItemCart);
+      this.setState({ showResults: true });
+    } else {
+      refcar.forEach(function(element) {
+        if (element.id === productDetail.id) {
+          alert("This products is already in your cart!");
+        } else {
+          refcar.push(newItemCart);
+          verifyItem = true;
+          /*addItemCart(newItemCart)
+            .then(res => {
+              console.log("add success");          
+            })
+            .catch(err => console.log(err));*/         
+        }
+      });
+
+      if (verifyItem){
+        this.setState({ showResults: true });
+        verifyItem =false;
+      }
+    }
   };
+
+  demo() {
+    this.setState({ showResults: true });
+  }
 
   render() {
     const { productDetail } = this.state;
     return (
       <React.Fragment>
-        <div class="justify-content-center">
-          <div class="col-md-8">
-            <div class="card">
-              <div class="card-header">
+        <div className="justify-content-center">
+          <div className="col-md-8">
+            <div className="card">
+              <div className="card-header">
                 {productDetail.product} - {productDetail.name}
               </div>
-              <div class="card-body">
+              <div className="card-body">
                 <img
                   src={productDetail.image}
-                  class="card-img-top"
+                  className="card-img-top"
                   alt={productDetail.product}
                 />
                 <hr />
                 <p>{productDetail.description}</p>
                 <hr />
-                <span class="badge badge-danger badge-cat">
+                <span className="badge badge-info badge-cat">
+                  Stock {productDetail.stock}
+                </span>
+                <span className="badge badge-danger badge-cat">
                   Price {productDetail.price}
                 </span>
 
+                {this.state.showResults ? <ShowResult /> : null}
+
                 <button
                   onClick={this.onAddlProductToCart(productDetail)}
-                  class="btn btn-success btn-block"
+                  className="btn btn-success btn-block"
                 >
                   buy
                 </button>

@@ -29,8 +29,8 @@ class Product extends Component {
     const { products } = this.state;
     return (
       <React.Fragment>
-        <div class="pl-5 pr-5">
-          <div class="row justify-content-center">
+        <div className="pl-5 pr-5">
+          <div className="row justify-content-center">
             {products.map(el => (
               <ProductList
                 key={"i-" + el.id}

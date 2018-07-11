@@ -13,23 +13,30 @@
   border: ipx solid #ccc;
 }
 
-body{
+body {
   background-color: #f8f8f8;
 }
 
-.cartStyles{
+.cartStyles {
   margin-bottom: 10px;
 }
 
-.tablecart{
+.tablecart {
   background-color: #ccc;
 }
 
-.cart-input-with{
+.cart-input-with {
   width: 100px;
 }
 
-.colTotal{
+.colTotal {
   float: right;
-  
+}
+
+.card-body {
+  text-align: center;
+}
+
+.link-d{
+  color: #f8f8f8;
 }
