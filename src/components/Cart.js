@@ -7,8 +7,6 @@ class Cart extends Component {
   constructor(props) {
     super(props);
 
-    //this.inputText = React.createRef();
-
     this.state = {
       carts: [],
       total: 0
@@ -24,23 +22,38 @@ class Cart extends Component {
   }
 
   handleText(item, i) {
-    //console.log(refcar);
-    console.log(" dd222sss ");
-    let cantidad = this.refs['cantidad' + i].value;
-    console.log(" dd " + cantidad);
-    //console.log(this.inputText.current.value);
+    let cantidad = this.refs["cantidad" + i].value;
 
-    //refcar[item.id - 1].cantidad = this.inputText.current.value;
-
-    refcar.forEach(function (element) {
-      //console.log(element);
+    refcar.forEach(function(element) {
       if (element.id === item.id) {
-        console.log("siiii");
         element.cantidad = cantidad;
       }
     });
 
-    console.log(refcar);
+    this.setState({
+      carts: refcar,
+      total: 0
+    });
+  }
+
+  handlePayCart(i) {
+    alert("Your Payment was successful");
+    while (refcar.length > 0) {
+      refcar.pop();
+    }
+    this.setState({
+      carts: [],
+      total: 0
+    });
+  }
+
+  handleRemoveItem(item, i) {
+    console.log(i);
+    refcar.forEach(function(element) {
+      if (element.id === item.id) {
+        refcar.pop();
+      }
+    });
 
     this.setState({
       carts: refcar,
@@ -61,6 +74,7 @@ class Cart extends Component {
                   <th scope="col">Cantidad</th>
                   <th scope="col">Price</th>
                   <th scope="col">SubTotal</th>
+                  <th scope="col">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -84,16 +98,34 @@ class Cart extends Component {
                       </td>
                       <td>{item.price}</td>
                       <td>{subtotal}</td>
+                      <td onClick={this.handleRemoveItem.bind(this, item, i)}>
+                        remove
+                      </td>
                     </tr>
                   );
                 })}
               </tbody>
             </table>
 
+            <table className="table">
+              <tr>
+                <td />
+                <td />
+                <td />
+                <td className="colTotal">
+                  <b>Total: </b>
+                  {this.state.total}
+                </td>
+                <td />
+              </tr>
+            </table>
             <div className="col-sm-6">
-              <h3>Total: {this.state.total}</h3>
-              <button className="btn btn-default">Cancelar</button>
-              <button className="btn btn-default">Pagar</button>
+              <button
+                className="btn btn-success"
+                onClick={this.handlePayCart.bind(this)}
+              >
+                Buy Cart
+              </button>
             </div>
           </div>
         </div>
