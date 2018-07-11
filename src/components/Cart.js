@@ -52,7 +52,7 @@ class Cart extends Component {
     const { carts } = this.state;
     return (
       <React.Fragment>
-        <div className="pl-5 pr-5">
+        <div className="col-md-8 tablecart">
           <div className="row justify-content-center">
             <table className="table">
               <thead>
@@ -77,8 +77,9 @@ class Cart extends Component {
                         <input
                           type="number"
                           ref={"cantidad" + i}
+                          placeholder={item.cantidad}
                           onChange={this.handleText.bind(this, item, i)}
-                          className="form-control"
+                          className="form-control cart-input-with"
                         />
                       </td>
                       <td>{item.price}</td>

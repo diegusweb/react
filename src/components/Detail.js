@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import { getProduct } from "../utils/api";
 import { addItemCart } from "../utils/api";
 import { Link } from "react-router-dom";
-import { refcar } from './config/constants'
+import { refcar } from "./config/constants";
 
 class Detail extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      productDetail: [],
+      productDetail: []
     };
   }
 
@@ -24,7 +24,6 @@ class Detail extends Component {
       .catch(err => console.log(err));
   }
 
-
   onAddlProductToCart = productDetail => event => {
     const newItemCart = {
       id: productDetail.id,
@@ -32,7 +31,7 @@ class Detail extends Component {
       name: productDetail.name,
       cantidad: 1,
       price: parseInt(productDetail.price),
-      total: (parseInt(productDetail.price) * 2)
+      total: parseInt(productDetail.price) * 2
     };
 
     refcar.push(newItemCart);
@@ -48,30 +47,32 @@ class Detail extends Component {
     const { productDetail } = this.state;
     return (
       <React.Fragment>
-        <div class="col-md-12">
-          <div class="card">
-            <div class="card-header">
-              {productDetail.product} - {productDetail.name}
-            </div>
-            <div class="card-body">
-              <img
-                src={productDetail.image}
-                class="card-img-top"
-                alt={productDetail.product}
-              />
-              <hr />
-              <p>{productDetail.description}</p>
-              <hr />
-              <span class="badge badge-danger badge-cat">
-                Price {productDetail.price}
-              </span>
+        <div class="justify-content-center">
+          <div class="col-md-8">
+            <div class="card">
+              <div class="card-header">
+                {productDetail.product} - {productDetail.name}
+              </div>
+              <div class="card-body">
+                <img
+                  src={productDetail.image}
+                  class="card-img-top"
+                  alt={productDetail.product}
+                />
+                <hr />
+                <p>{productDetail.description}</p>
+                <hr />
+                <span class="badge badge-danger badge-cat">
+                  Price {productDetail.price}
+                </span>
 
-              <button
-                onClick={this.onAddlProductToCart(productDetail)}
-                class="btn btn-success btn-block"
-              >
-                buy
-              </button>
+                <button
+                  onClick={this.onAddlProductToCart(productDetail)}
+                  class="btn btn-success btn-block"
+                >
+                  buy
+                </button>
+              </div>
             </div>
           </div>
         </div>

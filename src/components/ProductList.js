@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 const ProductList = ({ item, onDetailProduct }) => {
   return (
-    <div class="col-md-3">
+    <div class="col-md-3 cartStyles">
       <div class="card card-01">
         <Link to={`/catalog/${item.id}`}>
           <img src={item.image} class="card-img-top" alt={item.product} />
         </Link>
-        <div class="card-body">
+        <div class="card-body " >
           <h4 class="card-title">{item.product}</h4>
 
           <hr />

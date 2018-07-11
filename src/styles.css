@@ -13,3 +13,18 @@
   border: ipx solid #ccc;
 }
 
+body{
+  background-color: #f8f8f8;
+}
+
+.cartStyles{
+  margin-bottom: 10px;
+}
+
+.tablecart{
+  background-color: #ccc;
+}
+
+.cart-input-with{
+  width: 100px;
+}

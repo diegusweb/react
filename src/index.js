@@ -26,7 +26,7 @@ function NotFound() {
 function App() {
   return (
     <Router history={browserHistory}>
-      <div>
+      <div class="col-md-12">
         <NavBar />
         <hr />
         <Switch>        
