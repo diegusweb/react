@@ -7,6 +7,9 @@
   color: #fff;
   float: right;
   display: absolute;
-  background-color: darkolivegreen;
+  background-color: #333;
   padding: 8px;
+  border-radius: 8px;
+  border: ipx solid #ccc;
 }
+
