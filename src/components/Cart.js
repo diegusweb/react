@@ -2,6 +2,7 @@ import React, { Component } from "react";
 //import { getCarts } from "../utils/api";
 
 import { refcar } from "./config/constants";
+import { refid } from "./config/constants";
 
 class Cart extends Component {
   constructor(props) {
@@ -40,6 +41,7 @@ class Cart extends Component {
     alert("Your Payment was successful");
     while (refcar.length > 0) {
       refcar.pop();
+      refid.pop();
     }
     this.setState({
       carts: [],

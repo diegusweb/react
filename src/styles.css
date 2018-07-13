@@ -40,3 +40,7 @@ body {
 .link-d{
   color: #f8f8f8;
 }
+
+.limit-tm{
+  width: 450px !important;
+}

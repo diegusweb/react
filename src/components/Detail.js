@@ -3,6 +3,7 @@ import { getProduct } from "../utils/api";
 import { addItemCart } from "../utils/api";
 import { Link } from "react-router-dom";
 import { refcar } from "./config/constants";
+import { refid } from "./config/constants";
 import ShowResult from "../components/ShowResult";
 
 class Detail extends Component {
@@ -28,7 +29,8 @@ class Detail extends Component {
 
   onAddlProductToCart = productDetail => event => {
     let verifyItem = false;
-    const newItemCart = {
+    let newItemCart = [];
+    newItemCart = {
       id: productDetail.id,
       product: productDetail.product,
       name: productDetail.name,
@@ -38,29 +40,32 @@ class Detail extends Component {
       total: parseInt(productDetail.price) * 2
     };
 
-    console.log(refcar.length);
 
     if (refcar.length === 0) {
       refcar.push(newItemCart);
+      refid.push(productDetail.id);
       this.setState({ showResults: true });
     } else {
-      refcar.forEach(function(element) {
-        if (element.id === productDetail.id) {
+      if (refid.indexOf(productDetail.id) > -1) {
+        alert("This products is already in your cart!");
+      } else {
+        refid.push(productDetail.id);
+        refcar.push(newItemCart);
+        verifyItem = true;
+      }
+
+      /* refcar.forEach(function(element) {
+        if (parseInt(element.id) === productDetail.id) {
           alert("This products is already in your cart!");
         } else {
           refcar.push(newItemCart);
           verifyItem = true;
-          /*addItemCart(newItemCart)
-            .then(res => {
-              console.log("add success");          
-            })
-            .catch(err => console.log(err));*/         
         }
-      });
+      });*/
 
-      if (verifyItem){
+      if (verifyItem) {
         this.setState({ showResults: true });
-        verifyItem =false;
+        verifyItem = false;
       }
     }
   };
@@ -82,7 +87,7 @@ class Detail extends Component {
               <div className="card-body">
                 <img
                   src={productDetail.image}
-                  className="card-img-top"
+                  className="card-img-top limit-tm"
                   alt={productDetail.product}
                 />
                 <hr />
