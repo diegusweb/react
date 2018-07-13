@@ -54,15 +54,6 @@ class Detail extends Component {
         verifyItem = true;
       }
 
-      /* refcar.forEach(function(element) {
-        if (parseInt(element.id) === productDetail.id) {
-          alert("This products is already in your cart!");
-        } else {
-          refcar.push(newItemCart);
-          verifyItem = true;
-        }
-      });*/
-
       if (verifyItem) {
         this.setState({ showResults: true });
         verifyItem = false;
